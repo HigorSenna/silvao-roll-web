@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { routing } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { routing } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import { routing } from './app-routing.module';
     BrowserModule,
     routing
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

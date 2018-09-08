@@ -1,7 +1,8 @@
+import { Component, OnInit } from '@angular/core';
+import { ImagemService } from '../../../compartilhado/service/imagem.service';
+
 import { Maleta } from './../model/maleta';
 import { MaletaService } from './../service/maleta.service';
-import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
 
 declare var $: any;
 
@@ -12,21 +13,41 @@ declare var $: any;
 
 export class CadastrarMaletaComponent implements OnInit {
 
-    constructor(private maletaService: MaletaService) {}
+    constructor(private maletaService: MaletaService,
+                private imagemService: ImagemService) {}
 
     public quantidadeMaletas: number;
+    private image: File;
 
     public ngOnInit(): void {
         this.configurarUploadImagem();
     }
 
+    public getImage(event: EventTarget): void {
+        const eventObject: MSInputMethodContext = <MSInputMethodContext>event;
+        const target: HTMLInputElement = <HTMLInputElement>eventObject.target;
+        this.image = null;
+        this.image = target.files[0];
+    }
+
     public salvar(): void {
         const maletas: Maleta[] = [];
         for (let i = 0; i < this.quantidadeMaletas; i++) {
-            maletas.push(new Maleta());
+            const maleta = new Maleta();
+            maleta.nomeImagem = this.image.name;
+            maletas.push(maleta);
         }
         this.maletaService.salvar(maletas)
-                          .subscribe(retorno => console.log('voltou'));
+                          .subscribe(sucesso => this.uploadImage());
+    }
+
+    private uploadImage(): void {
+        this.imagemService.save(this.image).subscribe(
+            success => {
+                console.log('uploadImagemConcluido');
+            }, error => {
+                console.log('erro upload');
+            });
     }
     public configurarUploadImagem(): void {
 

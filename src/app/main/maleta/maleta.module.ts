@@ -1,10 +1,12 @@
-import { MaletaService } from './service/maleta.service';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Http, HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import { ImagemService } from '../../compartilhado/service/imagem.service';
 import { CadastrarMaletaComponent } from './cadastrar-maleta/cadastrar-maleta.component';
 import { routing } from './maleta-routing.module';
+import { MaletaService } from './service/maleta.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,8 @@ import { routing } from './maleta-routing.module';
     ],
     exports: [],
     providers: [
-        MaletaService
+        MaletaService,
+        ImagemService
     ]
 })
 

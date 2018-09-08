@@ -11,14 +11,12 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MaletaService {
+    private apiUrl: string = environment.apiUrl;
     constructor(private http: Http) {}
 
-    private apiUrl: string = environment.apiUrl;
-
     public salvar(maletas: Maleta[]) {
-        console.log(maletas)
         return this.http.post(`${this.apiUrl}/maletas`, maletas, this.headers())
-            .map(response => response.json())
+            .map(response => response)
             .catch(error => Observable.throw(error.json().message || 'Erro geral'));
     }
     public buscar(): Maleta[] {
