@@ -1,1 +1,25 @@
-cadastrar maleta
+<h4 style="margin-top:50px;font-weight: bold;">Cadastro de Maletas</h4>
+<div class="form-group" style="margin: 50px auto;width: 500px;">
+    <label for="quantidadeMaleta">Quantidade de maletas</label>
+    <div class="form-inline">
+        <div class="form-group">
+            <input id="quantidadeMaleta" 
+                    [(ngModel)]="quantidadeMaletas"
+                    class="form-control" 
+                    style="width:300px" 
+                    type="number"
+                    maxlength="2" 
+                    placeholder="Quantidade de maletas a serem criadas">
+        </div>
+        <div class="form-group">
+            <input class="btn btn-success" 
+                    style="width:100px;margin-left:16px;" 
+                    value="Cadastrar"
+                    (click)="salvar()">
+        </div>
+    </div>
+    <div style="margin-top:30px;" class="form-group">
+        <label>Imagem</label>
+        <input id="image-company" type="file" class="file" data-preview-file-type="text">
+    </div>
+</div>

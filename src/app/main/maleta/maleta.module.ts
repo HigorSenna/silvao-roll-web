@@ -1,3 +1,4 @@
+import { MaletaService } from './service/maleta.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Http, HttpModule } from '@angular/http';
@@ -17,6 +18,7 @@ import { routing } from './maleta-routing.module';
     ],
     exports: [],
     providers: [
+        MaletaService
     ]
 })
 
