@@ -10,11 +10,11 @@ const routes: Routes = [
             {
                 path: 'cadastrar-maletas',
                 loadChildren: './maleta/maleta.module#MaletaModule'
-            }
-            // {
-            //     path: 'update-menu',
-            //     loadChildren: './update-menu/update-menu.module#UpdateMenuModule'
-            // },
+            },
+            {
+                path: 'sorteio',
+                loadChildren: './sorteio/sorteio.module#SorteioModule'
+            },
             // {
             //     path: '',
             //     loadChildren: './dashboard/dashboard.module#DashboardModule'

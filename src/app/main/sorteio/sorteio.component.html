@@ -1,0 +1,24 @@
+<div class="container bg-light">
+    <div id="cards" class="bg-light">
+        <h3 style="margin-top: 30px; margin-bottom: 30px;" class="font-weight-light text-center my-3">Maletas</h3>
+        <div class="container-fluid mx-auto d-none d-md-block my-3">
+            <div class="row">
+                <div class="col-6 col-lg-3 d-flex mb-3" *ngFor="let maleta of maletas">
+                    <div class="card flex-fill">
+                        <!-- <div class="card-header bg-primary text-light rounded">Card Title</div> -->
+                        
+                        <div class="card-body">
+                            <img [src]="maleta.arquivoExibir" 
+                                 alt="card-alt-img-text" 
+                                 class="card-img-top img-fluid" />
+                            <p class="my-2"></p> 
+                        </div>
+                        <!-- <div class="card-footer">
+                            <button class="btn btn-outline-primary text-primary d-block w-75 mx-auto">Action</button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

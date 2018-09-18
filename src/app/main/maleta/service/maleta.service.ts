@@ -19,9 +19,10 @@ export class MaletaService {
             .map(response => response)
             .catch(error => Observable.throw(error.json().message || 'Erro geral'));
     }
-    public buscar(): Maleta[] {
-        // this.http.get("url")
-        return null;
+    public buscar(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/maletas`, this.headers())
+                        .map(response => response.json())
+                        .catch(error => Observable.throw(error.json().message || 'Erro ao recuperar maletas'));
     }
 
     private headers(): RequestOptions {

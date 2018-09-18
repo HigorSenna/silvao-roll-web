@@ -4,4 +4,7 @@ export class Maleta {
     public nomeImagem?: string;
     public caminhoLocalizacaoImagem: string;
     public premios?: Premio[];
+    public arquivo?: any[];
+
+    public arquivoExibir: string;
 }

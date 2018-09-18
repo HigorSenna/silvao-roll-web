@@ -16,7 +16,7 @@ export class ImagemService {
 
     public save (file: File): Observable<any> {
         const formData: FormData = new FormData();
-        formData.append('image', file);
+        formData.append('imagem', file);
         return this.postFormData(formData);
     }
 
