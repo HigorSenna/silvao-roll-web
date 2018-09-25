@@ -2173,7 +2173,13 @@ ul.social-icons li a.youtube:hover {
 }
 
 .card-img-top:hover {
-    opacity:0.6; 
+	opacity:0.6; 
+	cursor: pointer;
+}
+
+#botao-abrir, #botao-abrir:hover {
+	color: black !important;
+	opacity: 1.0;
 }
 
 
