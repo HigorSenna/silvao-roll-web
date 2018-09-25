@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Maleta } from './../maleta/model/maleta';
-import { MaletaService } from './../maleta/service/maleta.service';
+import { Maleta } from '../maleta/model/maleta';
+import { MaletaService } from '../maleta/service/maleta.service';
 
 declare var $: any;
 

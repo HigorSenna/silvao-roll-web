@@ -1,12 +1,12 @@
 import { Headers, Http, RequestOptions } from '@angular/http';
-import { environment } from './../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { Maleta } from './../model/maleta';
+import { Maleta } from '../model/maleta';
 import { Injectable } from '@angular/core';
 
 @Injectable()

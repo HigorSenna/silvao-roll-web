@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagemService } from '../../../compartilhado/service/imagem.service';
 
-import { Maleta } from './../model/maleta';
-import { MaletaService } from './../service/maleta.service';
+import { Maleta } from '../model/maleta';
+import { MaletaService } from '../service/maleta.service';
 
 declare var $: any;
 

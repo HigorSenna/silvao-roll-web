@@ -1,24 +1,24 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { MainComponent } from './main.component';
+import { CadastrarPremioComponent } from './cadastrar-premio/cadastrar-premio.componenet';
 
 const routes: Routes = [
     {
         path: '',
-        component: MainComponent,
+        component: CadastrarPremioComponent,
         children: [
-            {
-                path: 'cadastrar-maletas',
-                loadChildren: './maleta/maleta.module#MaletaModule'
-            },
-            {
-                path: 'sorteio',
-                loadChildren: './sorteio/sorteio.module#SorteioModule'
-            },
-            {
-                path: 'cadastrar-premios',
-                loadChildren: './premio/premio.module#PremioModule'
-            }
+            // {
+            //     path: 'cadastrar-maletas',
+            //     loadChildren: './maleta/maleta.module#MaletaModule'
+            // },
+            // {
+            //     path: 'sorteio',
+            //     loadChildren: './sorteio/sorteio.module#SorteioModule'
+            // },
+            // {
+            //     path: '',
+            //     loadChildren: './dashboard/dashboard.module#DashboardModule'
+            // },
             // {
             //     path: 'order',
             //     loadChildren: './order/order.module#OrderModule'
