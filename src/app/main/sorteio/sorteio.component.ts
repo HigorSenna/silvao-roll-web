@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Maleta } from './../maleta/model/maleta';
 import { MaletaService } from './../maleta/service/maleta.service';
+
+declare var $: any;
 
 @Component({
     selector: 'app-sorteio',
@@ -11,6 +12,8 @@ export class SorteioComponent implements OnInit {
     constructor(private maletaService: MaletaService) {}
 
     public maletas: Maleta[] = [];
+
+    isClicked = false;
     public ngOnInit(): void {
         this.buscarMaletas();
     }
