@@ -37,6 +37,12 @@ export class PremioService {
                         .catch(error => Observable.throw(error.json().message || 'Erro geral'));
     }
 
+    public buscarPorMaleta(idMaleta: number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/premios/${idMaleta}/maleta`, this.headers())
+                        .map(response => response.json())
+                        .catch(error => Observable.throw(error.json().message || 'Erro geral'));
+    }
+
     private headers(): RequestOptions {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');

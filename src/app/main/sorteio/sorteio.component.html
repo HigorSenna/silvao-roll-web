@@ -10,48 +10,55 @@
                         <div class="card-body">
                                 <div class="view overlay">
                                     <img [src]="maleta.arquivoExibir" 
-                                         class="card-img-top img-fluid" alt="" />
-                                    <div class="mask flex-center rgba-red-strong">
-                                        <p class="white-text">Strong overlay</p>
-                                    </div>
+                                         class="card-img-top img-fluid" alt="Abrir maleta"
+                                         (click)="abrirMaleta(maleta.id)" />
                                 </div>                             
-                            <button id="botao-abrir" style="margin-left: 67px;" 
-                                    class="btn btn-success text-primary  mx-auto">
-                                    Abrir Maleta
-                            </button>
                             <p class="my-2"></p> 
                         </div>
-                        <!-- <div class="card-footer">
-                            <button class="btn btn-outline-primary text-primary d-block w-75 mx-auto">Action</button>
-                        </div> -->
+                        <div class="card-footer">
+                            <button class="btn btn-outline-primary d-block w-75 mx-auto" 
+                                    style="margin-left:99px;"
+                                    (click)="abrirModalConfirmacaoExclusaoMaleta(maleta.id)">
+                                    Excluir
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div> 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
-        Launch demo modal
-      </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
+      <!-- Modal Premio-->
+<div class="modal fade" id="modalPremio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="exampleModalLabel">E o PRÊMIO foi de</h5>
             </div>
             <div class="modal-body">
-              ...
+                <span style="color:white;">{{premioDaMaleta.descricao}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Confirmação Exclusao Maleta-->
+<div class="modal fade" id="modalConfirmacaoExclusaoMaleta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir a maleta?</h5>
+            </div>
+            <div class="modal-body">
+                <span style="color:white;">Ao excluí-la, o premio será desvinculado automaticamente.</span>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary" (click)="excluirMaleta()">Sim</button>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
+<div id="loader" class="loader loader-default is-active" *ngIf="showLoading">
+</div>

@@ -25,6 +25,12 @@ export class MaletaService {
                         .catch(error => Observable.throw(error.json().message || 'Erro ao recuperar maletas'));
     }
 
+    public excluir(id: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/maletas/${id}`, this.headers())
+                        .map(response => response)
+                        .catch(error => Observable.throw(error.json().message || 'Erro ao recuperar maletas'));
+    }
+
     private headers(): RequestOptions {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');

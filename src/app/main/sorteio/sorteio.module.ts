@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaletaService } from '../maleta/service/maleta.service';
+import { PremioService } from '../premio/service/premio.service';
 import { routing } from './sorteio-routing.module';
 import { SorteioComponent } from './sorteio.component';
 
@@ -17,7 +18,8 @@ import { SorteioComponent } from './sorteio.component';
         SorteioComponent
     ],
     providers: [
-        MaletaService
+        MaletaService,
+        PremioService
     ]
   })
 export class SorteioModule {}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Maleta } from '../maleta/model/maleta';
 import { MaletaService } from '../maleta/service/maleta.service';
+import { PremioService } from '../premio/service/premio.service';
+import { Premio } from './../premio/model/premio';
 
 declare var $: any;
 
@@ -9,21 +11,50 @@ declare var $: any;
     templateUrl: 'sorteio.component.html'
 })
 export class SorteioComponent implements OnInit {
-    constructor(private maletaService: MaletaService) {}
+    constructor(private maletaService: MaletaService,
+                private premioService: PremioService) {}
 
     public maletas: Maleta[] = [];
 
-    isClicked = false;
+    public showLoading = false;
+
+    public premioDaMaleta: Premio = new Premio();
+
+    public idMaletaExcluir: number = null;
     public ngOnInit(): void {
         this.buscarMaletas();
     }
 
     public abrirMaleta(idMaleta: number) {
-        //buscar premio
-        //abrir modal e mostrar os premios
+        this.showLoading = true;
+        this.premioService.buscarPorMaleta(idMaleta)
+                          .subscribe(premio => this.tratarSucessoBuscaPremio(premio),
+                                     erro => {this.showLoading = false; console.log(erro); });
+    }
+
+    public abrirModalConfirmacaoExclusaoMaleta(idMaletaExcluir: number) {
+        this.idMaletaExcluir = idMaletaExcluir;
+        $('#modalConfirmacaoExclusaoMaleta').modal('show');
+    }
+
+    public excluirMaleta(): void {
+        this.maletaService.excluir(this.idMaletaExcluir)
+                          .subscribe(sucesso => {this.buscarMaletas(); $('#modalConfirmacaoExclusaoMaleta').modal('hide'); },
+                                     erro => {console.log(erro), $('#modalConfirmacaoExclusaoMaleta').modal('hide'); });
+    }
+
+    private tratarSucessoBuscaPremio(premio: Premio): void {
+        if (!premio || !premio.descricao) {
+            this.premioDaMaleta.descricao = 'NADA';
+        } else {
+            this.premioDaMaleta = premio;
+        }
+        this.showLoading = false;
+        $('#modalPremio').modal('show');
     }
 
     private buscarMaletas(): void {
+        this.showLoading = true;
         this.maletaService.buscar()
                           .subscribe(
                             maletas => this.montarImagemMaleta(maletas),
@@ -38,5 +69,6 @@ export class SorteioComponent implements OnInit {
             }
           });
           this.maletas = maletas;
+          this.showLoading = false;
     }
 }

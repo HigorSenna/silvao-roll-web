@@ -38,7 +38,10 @@ export class CadastrarMaletaComponent implements OnInit {
             maletas.push(maleta);
         }
         this.maletaService.salvar(maletas)
-                          .subscribe(sucesso => this.uploadImage());
+                          .subscribe(sucesso => {
+                                                    this.uploadImage();
+                                                    this.onSucesso();
+                                                });
     }
 
     private uploadImage(): void {
@@ -48,6 +51,11 @@ export class CadastrarMaletaComponent implements OnInit {
             }, error => {
                 console.log('erro upload');
             });
+    }
+
+    private onSucesso(): void {
+        this.quantidadeMaletas = 0;
+        this.image = null;
     }
     public configurarUploadImagem(): void {
 
