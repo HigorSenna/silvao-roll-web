@@ -31,6 +31,12 @@ export class MaletaService {
                         .catch(error => Observable.throw(error.json().message || 'Erro ao recuperar maletas'));
     }
 
+    public embaralhar(maletas: Maleta[]): Observable<any> {
+        return this.http.post(`${this.apiUrl}/maletas/embaralhar`, maletas, this.headers())
+                        .map(response => response.json())
+                        .catch(error => Observable.throw(error.json().message || 'Erro ao recuperar maletas'));
+    }
+
     private headers(): RequestOptions {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');

@@ -25,8 +25,14 @@ export class SorteioComponent implements OnInit {
         this.buscarMaletas();
     }
 
+    public embaralhar(): void {
+        this.maletaService.embaralhar(this.maletas)
+                          .subscribe(maletasEmbaralhadas =>  this.montarImagemMaleta(maletasEmbaralhadas),
+                                     erro => console.log(erro));
+    }
+
     public abrirMaleta(idMaleta: number) {
-        this.showLoading = true;
+        // this.showLoading = true;
         this.premioService.buscarPorMaleta(idMaleta)
                           .subscribe(premio => this.tratarSucessoBuscaPremio(premio),
                                      erro => {this.showLoading = false; console.log(erro); });
