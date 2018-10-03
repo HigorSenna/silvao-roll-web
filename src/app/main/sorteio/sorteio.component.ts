@@ -58,7 +58,7 @@ export class SorteioComponent implements OnInit {
         this.maletaService.buscar()
                           .subscribe(
                             maletas => this.montarImagemMaleta(maletas),
-                            erro => console.log(erro)
+                            erro => {console.log(erro); this.showLoading = false; }
                         );
     }
 
