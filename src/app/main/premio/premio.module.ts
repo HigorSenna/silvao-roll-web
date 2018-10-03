@@ -1,7 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { routing } from './premio-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 import { CadastrarPremioComponent } from './cadastrar-premio/cadastrar-premio.componenet';
+import { routing } from './premio-routing.module';
+import { PremioService } from './service/premio.service';
 
 
 @NgModule({
@@ -9,9 +13,13 @@ import { CadastrarPremioComponent } from './cadastrar-premio/cadastrar-premio.co
     CadastrarPremioComponent
   ],
   imports: [
+    FormsModule,
+    HttpModule,
+    CommonModule,
     routing
   ],
   providers: [
+    PremioService
   ],
 })
 export class PremioModule {}

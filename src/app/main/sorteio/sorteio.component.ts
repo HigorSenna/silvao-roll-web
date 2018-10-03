@@ -18,6 +18,11 @@ export class SorteioComponent implements OnInit {
         this.buscarMaletas();
     }
 
+    public abrirMaleta(idMaleta: number) {
+        //buscar premio
+        //abrir modal e mostrar os premios
+    }
+
     private buscarMaletas(): void {
         this.maletaService.buscar()
                           .subscribe(

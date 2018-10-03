@@ -1,1 +1,44 @@
-premio componenet
+<h4 style="margin-top:50px;font-weight: bold;">Cadastro de Maletas</h4>
+<div class="form-group" style="margin: 50px auto;width: 500px;">
+    <label for="quantidadeMaleta">Descrição Premio</label>
+    <div class="form-inline">
+        <div class="form-group">
+            <input id="quantidadeMaleta" 
+                    [(ngModel)]="premio.descricao"
+                    class="form-control" 
+                    style="width:300px" 
+                    type="text"
+                    placeholder="Descrição">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" 
+                    style="width:100px;margin-left:16px;" 
+                    (click)="salvar()"> 
+                    Cadastrar
+            </button>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-primary" 
+        style="margin-bottom: 30px;"
+        *ngIf="premios && premios.length > 0"
+        (click)="vincular()">
+        Vincular premios com maletas
+</button>
+<table class="table table-stripped">
+    <thead>
+        <th>
+            Prêmios cadastrados
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngIf="!premios || premios.length == 0">Nenhum prêmio cadastrado!!</tr>
+        <tr *ngFor="let premioCadastrado of premios">
+            <td>{{premioCadastrado.descricao}}</td>
+            <td>
+                <button class="btn btn-danger" (click)="excluir(premioCadastrado.id)">Exlcuir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
