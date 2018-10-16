@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/roll",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,7 +26,8 @@
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/style.css",
               "src/assets/css/loader.css",
-              "node_modules/bootstrap-fileinput/css/fileinput.min.css"
+              "node_modules/bootstrap-fileinput/css/fileinput.min.css",
+              "node_modules/ngx-toastr/toastr.css" 
             ],
             "scripts": [
               "src/assets/js/jquery-2.1.4.min.js",

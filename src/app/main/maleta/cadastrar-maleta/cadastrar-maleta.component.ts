@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ImagemService } from '../../../compartilhado/service/imagem.service';
+import { ToastrService } from 'ngx-toastr';
 
+import { ImagemService } from '../../../compartilhado/service/imagem.service';
 import { Maleta } from '../model/maleta';
 import { MaletaService } from '../service/maleta.service';
+
 
 declare var $: any;
 
@@ -14,7 +16,8 @@ declare var $: any;
 export class CadastrarMaletaComponent implements OnInit {
 
     constructor(private maletaService: MaletaService,
-                private imagemService: ImagemService) {}
+                private imagemService: ImagemService,
+                private toastService: ToastrService) {}
 
     public quantidadeMaletas: number;
     private image: File;
@@ -34,11 +37,12 @@ export class CadastrarMaletaComponent implements OnInit {
         const maletas: Maleta[] = [];
         for (let i = 0; i < this.quantidadeMaletas; i++) {
             const maleta = new Maleta();
-            maleta.nomeImagem = this.image.name;
+            maleta.nomeImagem = this.image ? this.image.name : null;
             maletas.push(maleta);
         }
         this.maletaService.salvar(maletas)
                           .subscribe(sucesso => {
+                                                    this.toastService.success('Sucesso!', 'Maleta(s) cadastrada(s) com sucesso!');
                                                     this.uploadImage();
                                                     this.onSucesso();
                                                 });

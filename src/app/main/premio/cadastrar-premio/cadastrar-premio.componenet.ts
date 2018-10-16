@@ -1,8 +1,7 @@
-import { OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
-import { Premio } from './../model/premio';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { PremioService } from '../service/premio.service';
+import { Premio } from './../model/premio';
 
 @Component({
     selector: 'app-cadastrar-premio-componenet',
@@ -14,7 +13,8 @@ export class CadastrarPremioComponent implements OnInit {
 
     public premios: Premio[] = [];
 
-    constructor(private premioService: PremioService) {}
+    constructor(private premioService: PremioService,
+                private toastService: ToastrService) {}
 
     public ngOnInit(): void {
         this.buscar();
@@ -22,25 +22,26 @@ export class CadastrarPremioComponent implements OnInit {
     public salvar(): void {
         if (this.premio && this.premio.descricao) {
             this.premioService.salvar(this.premio)
-                          .subscribe(sucesso => this.onSucesso(),
+                          .subscribe(sucesso => this.onSucesso('Prêmio cadastrado com sucesso!!'),
                                      erro => console.log(erro));
         }
     }
 
-    public onSucesso(): void {
+    public onSucesso(message: string): void {
+        this.toastService.success('Sucesso!', message);
         this.premio = new Premio();
         this.buscar();
     }
 
     public excluir(id: number): void {
         this.premioService.excluir(id)
-                          .subscribe(sucesso => this.onSucesso(),
+                          .subscribe(sucesso => this.onSucesso('Prêmio excluído com sucesso!!'),
                                      erro => console.log(erro));
     }
 
     public vincular(): void {
         this.premioService.vincular(this.premios)
-                          .subscribe(sucesso => this.onSucesso(),
+                          .subscribe(sucesso => this.onSucesso('Prêmio(s) vinculado(s) com sucesso!!'),
                                      erro => console.log(erro));
     }
 

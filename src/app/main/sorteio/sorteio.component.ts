@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Maleta } from '../maleta/model/maleta';
 import { MaletaService } from '../maleta/service/maleta.service';
 import { PremioService } from '../premio/service/premio.service';
@@ -12,7 +13,8 @@ declare var $: any;
 })
 export class SorteioComponent implements OnInit {
     constructor(private maletaService: MaletaService,
-                private premioService: PremioService) {}
+                private premioService: PremioService,
+                private toastService: ToastrService) {}
 
     public maletas: Maleta[] = [];
 
@@ -45,8 +47,14 @@ export class SorteioComponent implements OnInit {
 
     public excluirMaleta(): void {
         this.maletaService.excluir(this.idMaletaExcluir)
-                          .subscribe(sucesso => {this.buscarMaletas(); $('#modalConfirmacaoExclusaoMaleta').modal('hide'); },
+                          .subscribe(sucesso => this.onSucessoExcluir(),
                                      erro => {console.log(erro), $('#modalConfirmacaoExclusaoMaleta').modal('hide'); });
+    }
+
+    public onSucessoExcluir(): void {
+        this.toastService.success('Sucesso!', 'Maleta excluída com sucesso!');
+        this.buscarMaletas();
+        $('#modalConfirmacaoExclusaoMaleta').modal('hide');
     }
 
     private tratarSucessoBuscaPremio(premio: Premio): void {
