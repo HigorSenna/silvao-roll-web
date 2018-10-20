@@ -1,0 +1,25 @@
+BUILD
+ng build --prod --base-href=//silvao-roll
+
+<VirtualHost 127.0.0.1:80>
+ DocumentRoot "D:/xampp/htdocs/roll"
+  DirectoryIndex index.html
+
+  <Directory "D:/xampp/htdocs/roll">
+        Options All
+        AllowOverride All
+        Require all granted
+  </Directory>
+</VirtualHost>
+
+
+HTACESS WINDOWS
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . index.html [L]
+</IfModule>
